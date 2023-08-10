@@ -1,0 +1,62 @@
+#include <stdio.h>
+int num[10]={0};
+static int N;
+int z=1;
+int div(int n);
+int h=0;
+
+int main(void) {
+	
+	scanf("%d", &N);
+  	
+  while(1){
+    
+    if(h==1){
+      break;
+    }
+    div(N);
+  }
+  
+  for(int i=0;i<10;i++){
+    printf("%d ",num[i]);
+  }
+  return 0;
+}
+
+int div(int n){
+  if(n/(z*10)==0){
+
+    int k=n/z;
+    if(k==1){
+      num[k] = num[k]+n%z+1;
+      h++;
+      return 0;
+    }
+    
+    for(int i=1;i<k;i++){
+      num[i] = num[i]+z;
+    }
+    num[k] = num[k]+n%z+1;
+    
+    h++;
+    return 0;
+  }
+  else{
+    int k=n/(z*10);
+    for(int i=0;i<=9;i++){
+      num[i] = num[i]+k*z;
+    }
+    num[0] = num[0] - z;
+
+    k=n/z;
+    k=k%10;
+    for(int i=0;i<k;i++){
+      num[i] = num[i]+z;
+    }
+    num[k] = num[k]+(n%z)+1;
+
+    z=z*10;
+
+    return 1;
+  }
+}
